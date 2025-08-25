@@ -7,11 +7,10 @@ Feature: Buscar usuario por ID
 
   @BuscarUsuarioExistente
   Scenario: Buscar usuario existente
-    * def user = read('classpath:data/expectedUser.json')
     Given path 'usuarios', usuario.response._id
     When method GET
     Then status 200
-    And match response contains { _id: '#string', nome: '#string', email: '#string' }
+    And match response == read ('classpath:schemas/ValidarSchemalistarUsuarios.json')
 
   @BuscarUsuarioInexistente
   Scenario: Buscar usuario inexistente
@@ -19,6 +18,7 @@ Feature: Buscar usuario por ID
     When method GET
     Then status 400
     And match response contains { message: 'Usuário não encontrado' }
+    And match response == read ('classpath:schemas/validarSchemaMessage.json')
 
   @ValidarIdCorto
   Scenario: Validar error cuando el id tiene menos de 16 caracteres

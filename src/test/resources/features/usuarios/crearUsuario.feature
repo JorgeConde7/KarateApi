@@ -11,6 +11,7 @@ Feature: Crear usuario
     When method POST
     Then status 201
     And match response contains { message: 'Cadastro realizado com sucesso' }
+    And match response == read ('classpath:schemas/validarSchemaCreacionUsuario.json')
 
   @RegistrarUsuarioEmailExistente
   Scenario: Intentar registrar usuario con email existente
@@ -18,3 +19,4 @@ Feature: Crear usuario
     When method POST
     Then status 400
     And match response.message == 'Este email já está sendo usado'
+    And match response == read ('classpath:schemas/validarSchemaMessage.json')

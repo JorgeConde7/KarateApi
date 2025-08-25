@@ -10,6 +10,7 @@ Feature: Eliminar usuario
     When method DELETE
     Then status 200
     And match response.message == 'Registro excluído com sucesso'
+    And match response == read ('classpath:schemas/validarSchemaMessage.json')
 
   @EliminarUsuarioInexistente
   Scenario: Eliminar usuario inexistente
@@ -17,3 +18,4 @@ Feature: Eliminar usuario
     When method DELETE
     Then status 200
     And match response.message == 'Nenhum registro excluído'
+    And match response == read ('classpath:schemas/validarSchemaMessage.json')
