@@ -3,12 +3,14 @@ Feature: Listar usuarios
   Background:
     * url 'https://serverest.dev'
 
+  @listarUsuarios
   Scenario: Obtener lista de usuarios
     Given path 'usuarios'
     When method GET
     Then status 200
     And match each response.usuarios == read ('classpath:schemas/schema-usuarios.json')
 
+  @endpointInvalido
   Scenario: Intentar acceder a endpoint inválido
     Given path 'usuariosx'
     When method GET

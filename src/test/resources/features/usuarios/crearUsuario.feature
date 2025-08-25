@@ -12,6 +12,7 @@ Feature: Crear usuario
     Then status 201
     And match response contains { message: 'Cadastro realizado com sucesso' }
 
+  @RegistrarUsuarioEmailExistente
   Scenario: Intentar registrar usuario con email existente
     Given request { nome: 'Juan Pérez', email: 'teste@qa.com', password: '1234', administrador: 'false' }
     When method POST
