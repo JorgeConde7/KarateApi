@@ -5,6 +5,7 @@ Feature: Crear usuario
     * path 'usuarios'
     * def randomEmail = 'user' + java.util.UUID.randomUUID() + '@mail.com'
 
+  @RegistrarUsuarioValido
   Scenario: Registrar usuario válido
     Given request { nome: 'Juan Pérez', email: '#(randomEmail)', password: '1234', administrador: 'true' }
     When method POST
